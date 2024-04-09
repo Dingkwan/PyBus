@@ -1,0 +1,8 @@
+version: 1.0
+
+db:
+  addr: "10.0.1.106"
+  port: "5432"
+  dbname: "pytrack"
+  user: "postgres"
+  password: "2YAzUd0bMnTwqrgKJ57C"

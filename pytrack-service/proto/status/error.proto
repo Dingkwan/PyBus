@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package status;
+
+option go_package = "pytrack-service/proto/status";
+
+import "errors/errors.proto";
+
+enum ErrorReason {
+  option (errors.default_code) = 500;
+
+  FATAL_ERROR = 0 [(errors.code) = 500];
+  DATABASE_ERROR = 1 [(errors.code) = 500];
+  UNAVAILABLE_RESOURCE = 2 [(errors.code) = 404];
+  INVALID_ARGUMENT = 3 [(errors.code) = 400];
+}

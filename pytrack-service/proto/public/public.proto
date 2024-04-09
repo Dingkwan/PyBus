@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package public;
+
+import "validate/validate.proto";
+import "google/api/annotations.proto";
+
+option go_package = "pytrack-service/proto/public";
+
+service Public {
+  rpc CarRoute (CarRouteRequest) returns (CarRouteReply) {
+    option (google.api.http) = {
+      get: "/api/route/taxi",
+    };
+  }
+}
+
+message CarRouteRequest {
+  int64 taxi_id = 1 [(validate.rules).int64 = {gt:0, lt:10000}];
+}
+
+message CarRouteReply {
+  int64 taxi_id = 1;
+  repeated CarPosition positions = 2;
+}
+
+message CarPosition {
+  double latitude = 1;
+  double longitude = 2;
+  int64 timestamp = 3;
+}
