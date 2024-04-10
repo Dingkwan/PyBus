@@ -11,8 +11,6 @@ Form = QtWidgets.QWidget()
 Form.setWindowTitle('pytrack')
 Form.resize(width, height)
 
-
-
 def open():
 
     filePath , filterType = QtWidgets.QFileDialog.getOpenFileNames()
@@ -28,8 +26,6 @@ def open():
     dataLabel.setText(data.head().to_string(index = False))
     print(data)
 
-
-
 btn = QtWidgets.QPushButton(Form)
 btn.move(50, 100)
 btn.setText('open file')
@@ -40,10 +36,6 @@ label.setGeometry(0, 0, width, 100)
 
 dataLabel = QtWidgets.QLabel(Form)
 dataLabel.setGeometry(0, 150, width, 150)
-# input = QtWidgets.QPlainTextEdit(Form)
-
-# input.setGeometry(0, 150, width, 150)
-
 Form.show()
 
 sys.exit(app.exec())
