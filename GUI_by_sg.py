@@ -25,7 +25,7 @@ while True:
     
     #点击file按钮之后的动作
     if event == "File...":
-        file = sg.PopupGetFile("Select file", no_window = True)
+        file = sg.PopupGetFile("Select file", no_window = True) #无需展示弹窗
         window["open"].update(file)
         print(file)
 
