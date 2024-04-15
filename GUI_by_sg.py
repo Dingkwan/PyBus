@@ -23,6 +23,7 @@ while True:
     if event == sg.WIN_CLOSED or event == 'Cancel':
         break
     
+    #点击file按钮之后的动作
     if event == "File...":
         file = sg.PopupGetFile("Select file", no_window = True)
         window["open"].update(file)
