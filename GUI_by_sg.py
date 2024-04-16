@@ -1,6 +1,8 @@
 import PySimpleGUI as sg
 import pandas as pd
 import route_map
+import webbrowser
+import os
 
 
 def dealData(filePath):
@@ -54,5 +56,9 @@ while True:
     
     if event == "routemap":
         route_map.routeMap(data)
+        print("---------Process finished---------")
+        htmlPath = 'file://'+os.getcwd()+'/' + 'route_map.html'
+        webbrowser.open(htmlPath)
+
 
 window.close()

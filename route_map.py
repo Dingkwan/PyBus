@@ -1,7 +1,7 @@
 # Import libraries
 import numpy as np
-import pandas as pd
-
+import matplotlib
+matplotlib.use('SVG')
 from pytrack.graph import graph, distance
 from pytrack.analytics import visualization
 from pytrack.matching import candidate, mpmatching_utils, mpmatching
@@ -50,5 +50,4 @@ def routeMap(data):
 
     # Plot map-matching results
     maps.draw_path(G_interp, trellis, predecessor)
-    maps.show_in_browser()
-
+    maps.save("route_map.html")
