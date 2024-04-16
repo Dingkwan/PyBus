@@ -38,7 +38,7 @@ while True:
     event, values = window.read()
 
     # if user closes window or clicks cancel
-    if event == sg.WIN_CLOSED or event == 'Cancel':
+    if event == sg.WIN_CLOSED:
         break
     
     # 点击file按钮之后的动作
