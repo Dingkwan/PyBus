@@ -57,7 +57,7 @@ while True:
     if event == "routemap":
         route_map.routeMap(data)
         print("---------Process finished---------")
-        htmlPath = 'file://'+os.getcwd()+'/' + 'route_map.html'
+        htmlPath = "file://"+os.getcwd()+"/" + "route_map.html"
         webbrowser.open(htmlPath)
 
 
