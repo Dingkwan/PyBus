@@ -1,7 +1,4 @@
-# Import libraries
 import numpy as np
-import matplotlib
-matplotlib.use('SVG')
 from pytrack.graph import graph, distance
 from pytrack.analytics import visualization
 from pytrack.matching import candidate, mpmatching_utils, mpmatching
