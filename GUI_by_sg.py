@@ -1,6 +1,14 @@
 import PySimpleGUI as sg
 import pandas as pd
 
+
+def dealData(filePath):
+    data = pd.read_csv(filePath)
+    data.columns = ["id", "datetime","longitude", "latitude"]
+    data = data[["datetime","latitude", "longitude"]]
+    return data
+
+
 # All the stuff inside your window.
 layout = [  [sg.Text("Some bus route", font = ('Arial', 30))],
             [sg.Button("Bus 1", size = (50,1), font = ("Arial", 20))],
@@ -9,10 +17,16 @@ layout = [  [sg.Text("Some bus route", font = ('Arial', 30))],
             [sg.Button("Bus 4", size = (50,1), font = ("Arial", 20))],
             [sg.Button("Bus 5", size = (50,1), font = ("Arial", 20))],
             [sg.Text("Or you can choose a GPS data file to analyse:", font = ("Arial", 15)), sg.Button("File...", font = ("Arial",15))],
-            [sg.Text(key = "open", font = ("Arial", 13))]
+            [sg.Text(key = "open", font = ("Arial", 13))],
+            [sg.Button("Show route map", key = "routemap", size = (25,1), font = ("Arial", 15), visible = False), sg.Button("Show route video", key = "routevideo", size = (25,1), font = ("Arial", 15), visible = False)]
         ]
 
-# Create the Window
+
+
+
+
+# --------------------------Create the Window----------------------------
+
 window = sg.Window('PyBus', layout, element_justification = 'centre', size = (600, 500))
 
 # Event Loop to process "events" and get the "values" of the inputs
@@ -23,10 +37,17 @@ while True:
     if event == sg.WIN_CLOSED or event == 'Cancel':
         break
     
-    #点击file按钮之后的动作
+    # 点击file按钮之后的动作
     if event == "File...":
-        file = sg.PopupGetFile("Select file", no_window = True) #无需展示弹窗
-        window["open"].update(file)
-        print(file)
+        filePath = sg.PopupGetFile("Select file", no_window = True) #无需展示弹窗
+
+        #开始处理文件
+        data = dealData(filePath)
+
+        # 显示剩余功能
+        window["open"].update(filePath)
+        window["routemap"].update(visible = True)
+        window["routevideo"].update(visible = True)
+
 
 window.close()
