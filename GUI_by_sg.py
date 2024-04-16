@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 import pandas as pd
+import route_map
 
 
 def dealData(filePath):
@@ -7,6 +8,7 @@ def dealData(filePath):
     data.columns = ["id", "datetime","longitude", "latitude"]
     data = data[["datetime","latitude", "longitude"]]
     return data
+
 
 
 # All the stuff inside your window.
@@ -43,11 +45,14 @@ while True:
 
         #开始处理文件
         data = dealData(filePath)
+        print(data)
 
         # 显示剩余功能
         window["open"].update(filePath)
         window["routemap"].update(visible = True)
         window["routevideo"].update(visible = True)
-
+    
+    if event == "routemap":
+        route_map.routeMap(data)
 
 window.close()
