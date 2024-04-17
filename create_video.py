@@ -44,7 +44,7 @@ def create_video(videoFolder,data):
 
 
     root_dir = "SV_panoramas"  # Directory where save Google Street View panoramas
-    api_key = 'AIzaSyAgET9YdZVIR2OqQ42gZMeCSOMyPyIgOYs'
+    api_key = 'Google API'
 
     if not os.path.exists(root_dir):
         os.makedirs(root_dir)
