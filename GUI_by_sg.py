@@ -55,10 +55,13 @@ while True:
         window["routevideo"].update(visible = True)
     
     if event == "routemap":
+        sg.popup_no_titlebar("Now running. Please wait. (Another window will pop up at the end of the running time)", font = ("Arial", 15), auto_close = True, auto_close_duration = 5)
         route_map.routeMap(data)
         print("---------Process finished---------")
         htmlPath = "file://"+os.getcwd()+"/" + "route_map.html"
         webbrowser.open(htmlPath)
+        sg.popup_no_titlebar("Finished!", font = ("Arial", 15))
+
 
 
 window.close()

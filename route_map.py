@@ -33,14 +33,9 @@ def routeMap(data):
 
     # Plot results
     maps.draw_candidates(candidates, 50)
-    # maps.show_in_browser()
 
     # Extract trellis DAG graph
     trellis = mpmatching_utils.create_trellis(candidates)
-
-    # Plot trellis graph
-    trellis_draw = visualization.draw_trellis(trellis, figsize=(15, 100), dpi=200)
-
 
     # Perform the map-matching process
     path_prob, predecessor = mpmatching.viterbi_search(G_interp, trellis, "start", "target")
