@@ -3,12 +3,16 @@ import pandas as pd
 import route_map
 import webbrowser
 import os
+import create_video
 
 
+
+# Adjust this function if the data structure changes
 def dealData(filePath):
     data = pd.read_csv(filePath)
-    data.columns = ["id", "datetime","longitude", "latitude"]
-    data = data[["datetime","latitude", "longitude"]]
+    data.columns = ["datetime","latitude", "longitude"]
+    # data.columns = ["id", "datetime","longitude", "latitude"]
+    # data = data[["datetime","latitude", "longitude"]]
     return data
 
 
@@ -55,12 +59,21 @@ while True:
         window["routevideo"].update(visible = True)
     
     if event == "routemap":
-        sg.popup_no_titlebar("Now running. Please wait. (Another window will pop up at the end of the running time)", font = ("Arial", 15), auto_close = True, auto_close_duration = 5)
+        sg.popup_no_titlebar("Createing route map. Please wait. (Another window will pop up at the end of the running time)", font = ("Arial", 15), auto_close = True, auto_close_duration = 5)
         route_map.routeMap(data)
         print("---------Process finished---------")
         htmlPath = "file://"+os.getcwd()+"/" + "route_map.html"
         webbrowser.open(htmlPath)
         sg.popup_no_titlebar("Finished!", font = ("Arial", 15))
+    
+    if event == "routevideo":
+        saveVideoFolder = sg.popup_get_folder("Please select the directory where the video will be saved:", font = ("Arial", 15), title = "Save route video")
+        sg.popup_no_titlebar("Creating video. Please wait. (Another window will pop up at the end of the running time)", font = ("Arial", 15), auto_close = True, auto_close_duration = 5)
+        create_video.create_video(saveVideoFolder, data)
+        sg.popup_no_titlebar("Finished!", font = ("Arial", 15))
+
+        
+
 
 
 
