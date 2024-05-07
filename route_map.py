@@ -2,9 +2,18 @@ import numpy as np
 from pytrack.graph import graph, distance
 from pytrack.analytics import visualization
 from pytrack.matching import candidate, mpmatching_utils, mpmatching
+import os
 
-def routeMap(data):
+def cleanCache():
+    if os.path.exists("__pycache__"):
+        rmtree("__pycache__")
+    if os.path.exists("SV_panoramas"):
+        rmtree("SV_panoramas")
+    # if os.path.exists("route_map.html"):
+    #     os.remove("route_map.html")
 
+def routeMap(data, dir):
+    cleanCache()
     latitude = data["latitude"].to_list()
     longitude = data["longitude"].to_list()
 
@@ -43,4 +52,5 @@ def routeMap(data):
 
     # Plot map-matching results
     maps.draw_path(G_interp, trellis, predecessor)
-    maps.save("route_map.html")
+    savePath = os.getcwd() + dir + '\\route_map.html'
+    maps.save(savePath)

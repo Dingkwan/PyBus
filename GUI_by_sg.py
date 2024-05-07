@@ -63,7 +63,7 @@ cleanCache()
 
 # All the stuff inside your window.
 layout = [[sg.Text("Some bus route", font=('Arial', 30))],
-          [sg.Button("Bus 61", size=(50, 1), font=("Arial", 20), key="Bus 1")],
+          [sg.Button("Bus 61", size=(50, 1), font=("Arial", 20), key="Bus 61")],
           [sg.Button("Bus 36", size=(50, 1), font=("Arial", 20), key="Bus 2")],
           [sg.Button("Bus 3", size=(50, 1), font=("Arial", 20), key="Bus 3")],
           [sg.Button("Bus 4", size=(50, 1), font=("Arial", 20), key="Bus 4")],
@@ -132,12 +132,17 @@ while True:
 
     # ---------------上半部分按钮行为---------------
 
-    if event == "Bus 1":
+    if event == "Bus 61":
         cleanCache()
         data = getDataFromAPI(1)
-        route_map.routeMap(data)
-        htmlPath = "file://" + os.getcwd() + "/" + "route_map.html"
-        create_video.create_video(os.getcwd(),data)
+        dir = "\\PyBus\\data\\Bus 61\\"
+        route_map.routeMap(data, dir)
+        dataDir = os.getcwd() + dir
+        htmlPath = "file:\\" + dir + "route_map.html"
+        if not os.path.exists(dataDir):
+            os.makedirs(dataDir)
+        # print(dir)
+        # create_video.create_video(os.getcwd(),data)
         webbrowser.open(htmlPath)
     
     if event == "Bus 2":
