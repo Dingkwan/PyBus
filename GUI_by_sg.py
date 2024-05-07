@@ -63,8 +63,8 @@ cleanCache()
 
 # All the stuff inside your window.
 layout = [[sg.Text("Some bus route", font=('Arial', 30))],
-          [sg.Button("Bus 1", size=(50, 1), font=("Arial", 20), key="Bus 1")],
-          [sg.Button("Bus 2", size=(50, 1), font=("Arial", 20), key="Bus 2")],
+          [sg.Button("Bus 61", size=(50, 1), font=("Arial", 20), key="Bus 1")],
+          [sg.Button("Bus 36", size=(50, 1), font=("Arial", 20), key="Bus 2")],
           [sg.Button("Bus 3", size=(50, 1), font=("Arial", 20), key="Bus 3")],
           [sg.Button("Bus 4", size=(50, 1), font=("Arial", 20), key="Bus 4")],
           [sg.Button("Bus 5", size=(50, 1), font=("Arial", 20), key="Bus 5")],
@@ -133,11 +133,19 @@ while True:
     # ---------------上半部分按钮行为---------------
 
     if event == "Bus 1":
-        # bus1GPXPath = "2024-04-12 PM 12_21_41.gpx"
-        # data = dealGPXData(bus1GPXPath)
+        cleanCache()
         data = getDataFromAPI(1)
         route_map.routeMap(data)
         htmlPath = "file://" + os.getcwd() + "/" + "route_map.html"
+        create_video.create_video(os.getcwd(),data)
+        webbrowser.open(htmlPath)
+    
+    if event == "Bus 2":
+        cleanCache()
+        data = getDataFromAPI(2)
+        route_map.routeMap(data)
+        htmlPath = "file://" + os.getcwd() + "/" + "route_map.html"
+        create_video.create_video(os.getcwd(),data)
         webbrowser.open(htmlPath)
 
 window.close()

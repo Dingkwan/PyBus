@@ -8,7 +8,7 @@ def routeMap(data):
     latitude = data["latitude"].to_list()
     longitude = data["longitude"].to_list()
 
-    points = [(lat, lon) for lat, lon in zip(latitude[:50], longitude[:50])]
+    points = [(lat, lon) for lat, lon in zip(latitude[:len(latitude)], longitude[:len(longitude)])]
 
 
     # Create BBOX
@@ -16,11 +16,12 @@ def routeMap(data):
     south, west = np.min(np.array([*points]), 0)
 
     # Extract road graph
+
     G = graph.graph_from_bbox(*distance.enlarge_bbox(north, south, west, east, 500), simplify=True, network_type='drive')
 
 
     # Initialize maps
-    loc = (np.mean(latitude[:50]), np.mean(longitude[:50]))
+    loc = (np.mean(latitude[:len(latitude)]), np.mean(longitude[:len(longitude)]))
     maps = visualization.Map(location=loc, zoom_start=15)
 
 
