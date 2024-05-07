@@ -135,15 +135,17 @@ while True:
     if event == "Bus 61":
         cleanCache()
         data = getDataFromAPI(1)
-        dir = "\\PyBus\\data\\Bus 61\\"
-        route_map.routeMap(data, dir)
+        dir = "\\PyBus\\data\\Bus 62\\"
         dataDir = os.getcwd() + dir
-        htmlPath = "file:\\" + dir + "route_map.html"
+        htmlPath = dataDir + "route_map.html"
         if not os.path.exists(dataDir):
             os.makedirs(dataDir)
+        route_map.routeMap(data, htmlPath)
+
+
         # print(dir)
         # create_video.create_video(os.getcwd(),data)
-        webbrowser.open(htmlPath)
+        webbrowser.open("file:\\"+ htmlPath)
     
     if event == "Bus 2":
         cleanCache()

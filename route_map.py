@@ -4,16 +4,8 @@ from pytrack.analytics import visualization
 from pytrack.matching import candidate, mpmatching_utils, mpmatching
 import os
 
-def cleanCache():
-    if os.path.exists("__pycache__"):
-        rmtree("__pycache__")
-    if os.path.exists("SV_panoramas"):
-        rmtree("SV_panoramas")
-    # if os.path.exists("route_map.html"):
-    #     os.remove("route_map.html")
 
-def routeMap(data, dir):
-    cleanCache()
+def routeMap(data, htmlPath):
     latitude = data["latitude"].to_list()
     longitude = data["longitude"].to_list()
 
@@ -52,5 +44,5 @@ def routeMap(data, dir):
 
     # Plot map-matching results
     maps.draw_path(G_interp, trellis, predecessor)
-    savePath = os.getcwd() + dir + '\\route_map.html'
-    maps.save(savePath)
+
+    maps.save(htmlPath)
