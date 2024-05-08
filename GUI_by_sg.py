@@ -46,7 +46,7 @@ def dealGPXData(filePath):
 
 
 def getDataFromAPI(id):
-    url = 'https://pybus.ov2.xyz/api/route/taxi'
+    url = 'https://pybus.breadog.icu/api/route/taxi'
     params = {
         'taxi_id': id,
     }
@@ -72,9 +72,7 @@ layout = [[sg.Text("Some bus route", font=('Arial', 30))],
            sg.Button("File...", font=("Arial", 15))],
           [sg.Text(key="open", font=("Arial", 13))],
           [sg.Button("Show route map", key="routemap", size=(25, 1), font=("Arial", 15), visible=False),
-           sg.Button("Show route video", key="routevideo", size=(25, 1), font=("Arial", 15), visible=False)],
-          [sg.HorizontalSeparator()],
-          [sg.Text("Some bus stops are under maintenance:")]
+           sg.Button("Show route video", key="routevideo", size=(25, 1), font=("Arial", 15), visible=False)]
           ]
 
 # --------------------------Create the Window----------------------------
@@ -134,25 +132,25 @@ while True:
 
     if event == "Bus 61":
         cleanCache()
+        bus = '61'
+        if not os.path.exists(os.getcwd() + "/data/" + bus):
+            os.makedirs( os.getcwd() + "/data/" + bus)
         data = getDataFromAPI(1)
-        dir = "\\PyBus\\data\\Bus 62\\"
-        dataDir = os.getcwd() + dir
-        htmlPath = dataDir + "route_map.html"
-        if not os.path.exists(dataDir):
-            os.makedirs(dataDir)
-        route_map.routeMap(data, htmlPath)
-
-
-        # print(dir)
+        route_map.routeMap(data, bus)
+        
+        htmlPath = "file://" + os.getcwd() + "/data/" + bus+ "/route_map.html"
         # create_video.create_video(os.getcwd(),data)
-        webbrowser.open("file:\\"+ htmlPath)
+        webbrowser.open(htmlPath)
     
     if event == "Bus 2":
         cleanCache()
+        bus = '36'
+        if not os.path.exists(os.getcwd() + "/data/" + bus):
+            os.makedirs( os.getcwd() + "/data/" + bus)
         data = getDataFromAPI(2)
-        route_map.routeMap(data)
-        htmlPath = "file://" + os.getcwd() + "/" + "route_map.html"
-        create_video.create_video(os.getcwd(),data)
+        route_map.routeMap(data,bus)
+        htmlPath = "file://" + os.getcwd() + "/data/" + bus+ "/route_map.html"
+        # create_video.create_video(os.getcwd(),data)
         webbrowser.open(htmlPath)
 
 window.close()

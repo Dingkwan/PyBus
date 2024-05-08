@@ -5,7 +5,7 @@ from pytrack.matching import candidate, mpmatching_utils, mpmatching
 import os
 
 
-def routeMap(data, htmlPath):
+def routeMap(data, bus):
     latitude = data["latitude"].to_list()
     longitude = data["longitude"].to_list()
 
@@ -44,5 +44,5 @@ def routeMap(data, htmlPath):
 
     # Plot map-matching results
     maps.draw_path(G_interp, trellis, predecessor)
-
-    maps.save(htmlPath)
+    savePath = os.getcwd() + "/data/" + bus+ '/route_map.html'
+    maps.save(savePath)
