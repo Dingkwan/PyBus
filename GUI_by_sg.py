@@ -46,7 +46,7 @@ def dealGPXData(filePath):
 
 
 def getDataFromAPI(id):
-    url = 'https://pybus.breadog.icu/api/route/taxi'
+    url = 'https://pybus.ov2.xyz/api/route/taxi'
     params = {
         'taxi_id': id,
     }
@@ -65,9 +65,9 @@ cleanCache()
 layout = [[sg.Text("Some bus route", font=('Arial', 30))],
           [sg.Button("Bus 61", size=(50, 1), font=("Arial", 20), key="Bus 61")],
           [sg.Button("Bus 36", size=(50, 1), font=("Arial", 20), key="Bus 2")],
-          [sg.Button("Bus 3", size=(50, 1), font=("Arial", 20), key="Bus 3")],
-          [sg.Button("Bus 4", size=(50, 1), font=("Arial", 20), key="Bus 4")],
-          [sg.Button("Bus 5", size=(50, 1), font=("Arial", 20), key="Bus 5")],
+          [sg.Button("Bus AP1X", size=(50, 1), font=("Arial", 20), key="Bus 3")],
+          [sg.Button("Bus 25BS", size=(50, 1), font=("Arial", 20), key="Bus 4")],
+          [sg.Button("Bus 35", size=(50, 1), font=("Arial", 20), key="Bus 5")],
           [sg.Text("Or you can choose a GPS data file to analyse:", font=("Arial", 15)),
            sg.Button("File...", font=("Arial", 15))],
           [sg.Text(key="open", font=("Arial", 13))],
